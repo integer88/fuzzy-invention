@@ -17,11 +17,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Echo version
-        run: echo $Version
+        run: echo $VERSION
 
   echo-version-windows:
     needs: extract-version
     runs-on: windows-latest
     steps:
       - name: Echo version
-        run: echo $Version
+        run: echo $VERSION
