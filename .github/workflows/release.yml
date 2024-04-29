@@ -8,26 +8,25 @@ on:
 jobs:
   extract-version:
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.extract.outputs.version }}
     steps:
       - name: Extract version
-        run: echo "VERSION=${GITHUB_REF#refs/tags/V}" >> $GITHUB_ENV
+        id: extract
+        run: echo "::set-output name=version::${GITHUB_REF#refs/tags/V}"
       - name: Echo version
-        run: echo $VERSION
+        run: echo ${{ steps.extract.outputs.version }}
 
   echo-version-ubuntu:
     needs: extract-version
     runs-on: ubuntu-latest
     steps:
       - name: Use VERSION
-        run: echo "The version is $VERSION"
-        env:
-          VERSION: ${{ env.VERSION }}
+        run: echo "The version is ${{ needs.extract-version.outputs.version }}"
 
   echo-version-windows:
     needs: extract-version
     runs-on: windows-latest
     steps:
       - name: Use VERSION
-        run: echo "The version is $VERSION"
-        env:
-          VERSION: ${{ env.VERSION }}
+        run: echo "The version is ${{ needs.extract-version.outputs.version }}"
