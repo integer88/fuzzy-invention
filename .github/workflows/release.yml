@@ -1,5 +1,5 @@
 name: Create Release
-run-name: ${GITHUB_REF}
+run-name: ${{ github.ref_name}}
 
 on:
   push:
