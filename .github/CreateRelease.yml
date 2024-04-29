@@ -1,0 +1,27 @@
+name: Tag Workflow
+
+on:
+  push:
+    tags:
+      - 'V\d.\d.\d'
+
+jobs:
+  extract-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Extract version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/V}" >> $GITHUB_ENV
+
+  echo-version-ubuntu:
+    needs: extract-version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo version
+        run: echo $Version
+
+  echo-version-windows:
+    needs: extract-version
+    runs-on: windows-latest
+    steps:
+      - name: Echo version
+        run: echo $Version
