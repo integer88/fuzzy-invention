@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Extract version
         run: echo "VERSION=${GITHUB_REF#refs/tags/V}" >> $GITHUB_ENV
+      - name: Echo version
+        run: echo $VERSION
 
   echo-version-ubuntu:
     needs: extract-version
@@ -18,6 +20,8 @@ jobs:
     steps:
       - name: Echo version
         run: echo $VERSION
+        env:
+          VERSION: ${{ env.VERSION }}
 
   echo-version-windows:
     needs: extract-version
@@ -25,3 +29,5 @@ jobs:
     steps:
       - name: Echo version
         run: echo $VERSION
+        env:
+          VERSION: ${{ env.VERSION }}
