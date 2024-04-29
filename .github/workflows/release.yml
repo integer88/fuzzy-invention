@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Extract version
         id: extract
-        run: echo "::set-output name=version::${GITHUB_REF#refs/tags/V}"
+        run: echo "version=${GITHUB_REF#refs/tags/V}" >> $GITHUB_OUTPUT
       - name: Echo version
         run: echo ${{ steps.extract.outputs.version }}
 
