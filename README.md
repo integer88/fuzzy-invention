@@ -18,3 +18,5 @@ The workflow consists of three jobs:
    - `Use VERSION`: This step prints the version number (extracted in the `extract-version` job) to the console.
 
 The purpose of this workflow is to demonstrate how to extract a version number from a tag and use it in subsequent jobs in a GitHub Actions workflow.
+
+copyright - anyone 2025
